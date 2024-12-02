@@ -22,9 +22,5 @@ main = do
     args <- getArgs
     contents <- readFile (head args)
     let (firstList, secondList) = parseInput contents
-    let sortedFirstList = sort firstList
-    let sortedSecondList = sort secondList
-    let recombined = zip sortedFirstList sortedSecondList
-    let differences = map difference recombined
-    let totalDifference = sum differences
-    print totalDifference
+    let recombined = zip (sort firstList) (sort secondList)
+    print (sum (map difference recombined))
