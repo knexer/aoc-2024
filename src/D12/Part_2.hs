@@ -1,0 +1,11 @@
+-- Notes:
+
+-- Instead of counting fences during parsing, do that after making plots
+-- To count fences for a plot:
+-- first, re-form it into a 2d grid, with Nothing in the empty spots, probably padded
+-- then, find the top and bottom segments
+--   first, take two adjacent rows
+--   go through the adjacent rows and classify each pair as a top, bottom, or not-an edge
+--   count how many times we switch types
+--   do that for all the rest of the rows (recurse)
+-- then, transpose the grid and do the same thing to find the left and right segments
