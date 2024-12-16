@@ -1,17 +1,18 @@
-#!/usr/bin/env stack
--- stack --resolver lts-23.0 script
+module D11.Part_2 where
 
-import System.Environment (getArgs)
 import Data.List (unfoldr)
 import Data.Foldable (for_)
 import qualified Data.MultiSet as MultiSet
 
-blink :: [Int] -> [Int]
-blink [] = []
-blink (stone:stones)
-  | stone == 0 = 1 : blink stones
-  | even len = (read . take (div len 2)) stoneStr : (read . drop (div len 2)) stoneStr : blink stones
-  | otherwise = stone * 2024 : blink stones
+blink :: MultiSet.MultiSet Int -> MultiSet.MultiSet Int
+-- blink set = MultiSet.join ((fmap blinkOne) set)
+blink = MultiSet.join . MultiSet.map blinkOne
+
+blinkOne :: Int -> MultiSet.MultiSet Int
+blinkOne stone
+  | stone == 0 = MultiSet.fromList [1]
+  | even len = MultiSet.fromList [(read . take (div len 2)) stoneStr, (read . drop (div len 2)) stoneStr]
+  | otherwise = MultiSet.fromList [stone * 2024]
   where
     stoneStr = show stone
     len = length stoneStr
@@ -34,16 +35,13 @@ blink (stone:stones)
 -- then memoize/dp to fill it in, from number of blinks = 1 up to number of blinks = 75
 -- except, number on stone could be unbounded so that part should be like a hashmap instead
 
-main :: IO ()
-main = do
-    args <- getArgs
-    contents <- readFile (head args)
-    let stones = map read (words contents)
+main :: String -> IO ()
+main contents = do
+    let stones = MultiSet.fromList $ map read (words contents)
     let blinks = 75
     let blinkStones = take (blinks + 1) (unfoldr (\stones -> Just (stones, blink stones)) stones)
     let lengths = map length blinkStones
 
     for_ (zip [0..] lengths) print
     print $ last lengths
-
 

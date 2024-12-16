@@ -1,4 +1,5 @@
-import System.Environment (getArgs)
+module D11.Part_1 where
+
 import Data.List (unfoldr)
 import Data.Foldable (for_)
 
@@ -13,10 +14,8 @@ blink (stone:stones)
     len = length stoneStr
 
 
-main :: IO ()
-main = do
-    args <- getArgs
-    contents <- readFile (head args)
+main :: String -> IO ()
+main contents = do
     let stones = map read (words contents)
     let blinks = 25
     let blinkStones = take (blinks + 1) (unfoldr (\stones -> Just (stones, blink stones)) stones)

@@ -1,4 +1,4 @@
-cabal-version:      3.0
+cabal-version:      3.4
 -- The cabal-version field refers to the version of the .cabal specification,
 -- and can be different from the cabal-install (the tool) version and the
 -- Cabal (the library) version you are using. As such, the Cabal (the library)
@@ -59,7 +59,8 @@ library
     import:           warnings
 
     -- Modules exported by the library.
-    exposed-modules:  d11.part_01
+    exposed-modules:  D11.Part_1
+                    , D11.Part_2
 
     -- Modules included in this library but not exported.
     -- other-modules:
@@ -69,6 +70,7 @@ library
 
     -- Other library packages from which modules are imported.
     build-depends:    base ^>=4.20.0.0
+                    , multiset
 
     -- Directories containing source files.
     hs-source-dirs:   src
@@ -90,9 +92,9 @@ executable aoc2024
     -- other-extensions:
 
     -- Other library packages from which modules are imported.
-    build-depends:
-        base ^>=4.20.0.0,
-        aoc2024
+    build-depends:  base ^>=4.20.0.0
+                    , aoc2024
+                    , filepath
 
     -- Directories containing source files.
     hs-source-dirs:   app
