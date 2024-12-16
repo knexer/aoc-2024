@@ -61,6 +61,7 @@ library
     -- Modules exported by the library.
     exposed-modules:  D11.Part_1
                     , D11.Part_2
+                    , D12.Part_1
 
     -- Modules included in this library but not exported.
     -- other-modules:
@@ -71,6 +72,7 @@ library
     -- Other library packages from which modules are imported.
     build-depends:    base ^>=4.20.0.0
                     , multiset
+                    , containers
 
     -- Directories containing source files.
     hs-source-dirs:   src
