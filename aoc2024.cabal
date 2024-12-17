@@ -64,6 +64,7 @@ library
                     , D12.Part_1
                     , D12.Part_2
                     , D13.Part_1
+                    , D13.Part_2
 
     -- Modules included in this library but not exported.
     -- other-modules:
