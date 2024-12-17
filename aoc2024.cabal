@@ -62,6 +62,7 @@ library
     exposed-modules:  D11.Part_1
                     , D11.Part_2
                     , D12.Part_1
+                    , D12.Part_2
 
     -- Modules included in this library but not exported.
     -- other-modules:
