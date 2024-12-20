@@ -1,7 +1,6 @@
 module D14.Part_1 where
 
 import Data.Char (isDigit)
-import Debug.Trace (traceShowId)
 import Data.Maybe (catMaybes)
 
 type Vector = (Int, Int)

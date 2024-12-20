@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-type-defaults #-}
 module D11.Part_2 where
 
 import Data.List (unfoldr)
@@ -37,9 +38,9 @@ blinkOne stone
 
 main :: String -> IO ()
 main contents = do
-    let stones = MultiSet.fromList $ map read (words contents)
+    let ogStones = MultiSet.fromList $ map read (words contents)
     let blinks = 75
-    let blinkStones = take (blinks + 1) (unfoldr (\stones -> Just (stones, blink stones)) stones)
+    let blinkStones = take (blinks + 1) (unfoldr (\stones -> Just (stones, blink stones)) ogStones)
     let lengths = map length blinkStones
 
     for_ (zip [0..] lengths) print
