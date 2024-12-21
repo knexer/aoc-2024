@@ -1,8 +1,10 @@
-module D17.Part_1 where
+{-# OPTIONS_GHC -Wno-type-defaults #-}
+module D17.Part_2 where
 
 import Data.Bits (xor)
 import Debug.Trace (traceShowId)
 import Utils (extractNumbers)
+import Data.Foldable (for_)
 
 data Program = Program
   { a :: Integer,
@@ -106,5 +108,21 @@ parse contents = Program {a = a, b = b, c = c, input = input, output = [], instr
     c = toInteger ((extractNumbers (inputLines !! 2)) !! 0)
     input :: [Integer] = (map toInteger . extractNumbers) (inputLines !! 4)
 
+-- helper for manual process: go from left to right and nail down the digits
+-- some backtracking needed maybe but shouldn't be too bad
+makeGuess :: Integer -> Integer
+makeGuess digit = traceShowId guess
+    where
+        digits = [digit, 0, 4, 2, 2, 5, 5, 0, 1, 0, 3, 1, 5, 4, 0, 3]
+        guess = sum $ map (\(digitX, expon) -> digitX * 8^expon) (zip digits [0..])
+
 main :: String -> IO ()
-main = print . run . parse
+main contents = do
+  print $ run program {a = 40}
+  putStrLn ("g =" ++ show [2,4,1,3,7,5,4,1,1,3,0,3,5,5,3,0])
+  let programs = zip (map makeGuess [0..7]) [0..7]
+  for_ programs (print . (\foo -> (snd foo, run program {a=fst foo})))
+  print $ bruteForceSmallestQuine 108107566327030 program
+  where
+    program = parse contents
+    -- tests = map (\a -> program {a = 8 ^ a + 40}) [0 .. 20]

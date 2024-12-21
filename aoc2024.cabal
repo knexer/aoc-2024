@@ -70,6 +70,7 @@ library
                     , D15.Part_1
                     , D15.Part_2
                     , D17.Part_1
+                    , D17.Part_2
 
     -- Modules included in this library but not exported.
     other-modules:    Utils
