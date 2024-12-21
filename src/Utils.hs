@@ -1,4 +1,5 @@
 module Utils where
+import Data.Char (isDigit)
 
 split :: (Eq a) => a -> [a] -> [[a]]
 split _ [] = []
@@ -14,4 +15,11 @@ coordinates = map rowNumberToIds [0..]
 zipWithCoords :: [[a]] -> [[((Int, Int), a)]]
 zipWithCoords = zipWith zip coordinates
 
-    -- let startingMap = (locFromChar <$>) <$> contentsWithIndex -- TODO should be unique integers for each
+extractNumbers :: String -> [Int]
+extractNumbers [] = []
+extractNumbers string
+  | length numbers == 0 = []
+  | otherwise = read numbers : extractNumbers rest
+  where
+    (numbers, rest) = span isDigitOrNegative (dropWhile (not . isDigitOrNegative) string)
+    isDigitOrNegative c = isDigit c || c == '-'

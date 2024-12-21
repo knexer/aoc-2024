@@ -13,6 +13,7 @@ import D14.Part_1 (main)
 import D14.Part_2 (main)
 import D15.Part_1 (main)
 import D15.Part_2 (main)
+import D17.Part_1 (main)
 
 exes :: Int -> Int -> String -> IO ()
 exes day part
@@ -26,6 +27,7 @@ exes day part
   | day == 14 && part == 2 = D14.Part_2.main
   | day == 15 && part == 1 = D15.Part_1.main
   | day == 15 && part == 2 = D15.Part_2.main
+  | day == 17 && part == 1 = D17.Part_1.main
   | otherwise = undefined
 
 main :: IO ()
