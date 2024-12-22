@@ -12,6 +12,11 @@ coordinates = map rowNumberToIds [0..]
   where
     rowNumberToIds rowNumber = map (,rowNumber) [0..]
 
+finiteCoordinates :: Int -> Int -> [[(Int, Int)]]
+finiteCoordinates rows cols = map rowNumberToIds [0..rows]
+  where
+    rowNumberToIds rowNumber = map (,rowNumber) [0..cols]
+
 zipWithCoords :: [[a]] -> [[((Int, Int), a)]]
 zipWithCoords = zipWith zip coordinates
 
