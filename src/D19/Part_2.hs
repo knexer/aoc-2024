@@ -2,11 +2,9 @@
 
 module D19.Part_2 where
 
-import Data.Foldable (Foldable (toList))
 import Data.List (sort)
 import Data.Map qualified as Map
 import Data.Maybe (fromMaybe)
-import Data.Set qualified as Set
 import Utils (split)
 
 type Pattern = [Char]
